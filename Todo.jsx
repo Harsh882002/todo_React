@@ -41,6 +41,19 @@ export const Todo = () => {
     }, []);
 
 
+    //delete todo 
+
+    const handledeltetodo = (value) =>{
+        console.log(task);
+        console.log(value);
+
+        const updatedTask = task.filter((curTask) => curTask !== value);
+        setTask(updatedTask);
+    }
+
+    const handleClearAll = () =>{
+        setTask([]);
+    }
 
     return (
 
@@ -80,7 +93,7 @@ export const Todo = () => {
                                     <MdFileDownloadDone />
                                 </button>
 
-                                <button className='delete-btn'>
+                                <button className='delete-btn' onClick={() => handledeltetodo()}>
                                     <MdDelete />
 
                                 </button>
@@ -89,6 +102,10 @@ export const Todo = () => {
                     })}
                 </ul>
 
+            </section>
+
+            <section>
+                <button className='clear-btn' onClick={ handleClearAll}>ClearAll</button>
             </section>
         </section>
     )

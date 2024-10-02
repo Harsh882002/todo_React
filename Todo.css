@@ -71,6 +71,7 @@ body{
     font-size: 25px;
     margin-right: 12px;
     margin-top: 10px;
+    border-radius: 50px;
  }
 .date{
     color: whitesmoke;
