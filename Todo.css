@@ -20,18 +20,21 @@ body{
 
 .todo-input{
     margin: 15px;
-    margin-left: 43%;
-    width: 15%;
-    border-radius: 5px;
+    margin-left: 35%;
+    width: 30%;
+    height: 35px;
+
+    border-radius: 10px;
 }
 
 .todo-button{
     background-color: green;
     align-items: center;
     justify-content: center;
-    margin-left: 47%;
-    width: 93px;
+    margin-left: 45%;
+    width: 110px;
     border-radius: 5px;
+    height: 40px;
     color: white;
     font-weight: bolder;
 }
@@ -44,8 +47,8 @@ body{
     width: 40%;
     color: rgb(2, 2, 2);
     background-color: rgb(244, 235, 235);
-    height: 30px;
-    border-radius: 5px;
+    height: 45px;
+    border-radius:15px;
     text-align: center;
      justify-content: center;
      align-items: center;
@@ -56,15 +59,30 @@ body{
  .check-btn{
     margin-left: 38px;
     background-color: green;
-    margin-top: 5px;
+    margin-top: 10px;
     float: right;
     margin-right: 63px;
+    font-size: 25px;
     
  }
 
  .delete-btn{
     float: right;
-
+    font-size: 25px;
     margin-right: 12px;
-    margin-top: 5px;
+    margin-top: 10px;
  }
+.date{
+    color: whitesmoke;
+    padding: 15px;
+    text-align: center;
+    font-size: larger;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.item-text{
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
