@@ -1,49 +1,21 @@
 import { useEffect, useState } from 'react';
-import { MdFileDownloadDone, MdDelete } from "react-icons/md";
-
 import './Todo.css';
+import { TodoForm } from './TodoForm';
+import { TodoList } from './TodoList';
+
 export const Todo = () => {
-
-    const [InputValue, setInputValue] = useState("");
     const [task, setTask] = useState([]);
-    const [dateTime, setDateTime] = useState("");
 
-    const handleChange = (event) => {
-        setInputValue(event)
-    };
-
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
-
+    const handleFormSubmit = (InputValue) => {
         if (!InputValue) return;
 
-        if (task.includes(InputValue)) {
-            setInputValue(" ");
-            return;
-        }
+        if (task.includes(InputValue)) return;
 
         setTask((prevTask) => [...prevTask, InputValue]);
-
-        setInputValue(" ");
     }
 
-
-    //Time code
-    useEffect(() => {
-        const interval = setInterval(() => {
-            const now = new Date();
-            const forMattedDate = now.toLocaleDateString();
-            const forMattedTime = now.toLocaleTimeString();
-
-            setDateTime(`${forMattedDate} - ${forMattedTime}`);
-        }, 1000)
-        return () => clearInterval(interval);
-    }, []);
-
-
     //delete todo 
-
-    const handledeltetodo = (value) =>{
+    const handledeltetodo = (value) => {
         console.log(task);
         console.log(value);
 
@@ -51,61 +23,29 @@ export const Todo = () => {
         setTask(updatedTask);
     }
 
-    const handleClearAll = () =>{
+    const handleClearAll = () => {
         setTask([]);
     }
 
     return (
-
         <section className='todo-container'>
             <header>
                 <h1 className='todo-header'>Todo List</h1>
+                <button className='clear-btn' onClick={handleClearAll}>ClearAll</button>
+
             </header>
 
             <div>
-                <h1 className='date'>{dateTime}</h1>
             </div>
 
-            <section>
-                <form onSubmit={handleFormSubmit} >
-                    <div>
-                        <input type="text" className="todo-input" autoComplete="off"
-                            value={InputValue}
-                            onChange={(event) => { handleChange(event.target.value) }}
-                        />
-
-                    </div>
-
-                    <div>
-                        <button type="submit" className="todo-button" >Add Task</button>
-                    </div>
-                </form>
-            </section>
+            <TodoForm onAddTodo={handleFormSubmit} />
 
             <section>
-
                 <ul className='myUnorderList'>
                     {task.map((curTask, index) => {
-                        return (
-                            <li key={index} className='todo-item'>
-                                <span className='item-text'>{curTask}</span>
-                                <button className='check-btn'>
-                                    <MdFileDownloadDone />
-                                </button>
-
-                                <button className='delete-btn' onClick={() => handledeltetodo()}>
-                                    <MdDelete />
-
-                                </button>
-                            </li>
-                        )
+                        return <TodoList key={index} data={curTask} handleDeleteList={handledeltetodo} />
                     })}
                 </ul>
-
-            </section>
-
-            <section>
-                <button className='clear-btn' onClick={ handleClearAll}>ClearAll</button>
             </section>
         </section>
     )
