@@ -3,7 +3,7 @@ import "./Todo.css";
 
 export const TodoList = ({ key,data,handleDeleteList}) =>{
     return (
-        <li key={key}  className='todo-item'>
+        <li className='todo-item'>
             <span className='item-text'>{data}</span>
             <button className='check-btn'>
                 <MdFileDownloadDone />

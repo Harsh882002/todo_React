@@ -3,17 +3,17 @@ import "./Todo.css";
 import { TodoDate } from "./TodoDate";
 
 export const TodoForm = ({onAddTodo}) =>{
-    const [InputValue, setInputValue] = useState("");
+    const [InputValue, setInputValue] = useState({});
 
    
     const handleChange = (value) => {
-        setInputValue(value) 
+        setInputValue({id: value, content: value, checked: false}); 
     };
 
     const handleFormSubmit = (event) =>{
         event.preventDefault();
         onAddTodo(InputValue); 
-        setInputValue("")
+        setInputValue({id:"", content:"",checked: false})
     }
     return(
     <section>
@@ -21,13 +21,12 @@ export const TodoForm = ({onAddTodo}) =>{
         <div>
             <input type="text" className="todo-input" autoComplete="off"
             
-                value={InputValue}
-                onChange={(event) => { handleChange(event.target.value) }}
-             
+                value={InputValue.content}
+                onChange={(event) => { handleChange(event.target.value) }}  
             />
 
         </div>
-<TodoDate />
+
         <div>
             <button type="submit" className="todo-button" >Add Task</button>
         </div>
