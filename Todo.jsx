@@ -3,15 +3,20 @@ import './Todo.css';
 import { TodoForm } from './TodoForm';
 import { TodoList } from './TodoList';
 import { TodoDate } from './TodoDate';
+import { getLocalStorageTodoData, setLocalStorageTodoData } from './TodoLocalStorage';
+
+
 
 export const Todo = () => {
-    const [task, setTask] = useState([]);
+    // To get The Data from localStorage we use
+    //  getItem  inside hooks we use fat  arrow function to fetch data
+    const [task, setTask] = useState(() => getLocalStorageTodoData());
+
 
     const handleFormSubmit = (InputValue) => {
         const { id, content, checked } = InputValue;
 
         if (!content) return;
-
         // to check data is already present or not 
         // if (task.includes(InputVal ue)) return;
 
@@ -20,8 +25,14 @@ export const Todo = () => {
         );
         if (ifTodoContentMached) return;
 
-        setTask((prevTask) => [...prevTask, {id, content, checked}]);
+        setTask((prevTask) => [...prevTask, { id, content, checked }]);
     };
+
+
+
+
+    //  To store Data In Local Storage 
+    setLocalStorageTodoData(task);
 
     //delete todo 
     const handledeltetodo = (value) => {
@@ -33,15 +44,15 @@ export const Todo = () => {
     }
 
     // to checked a button 
-    const handleCheckedTodo = (content) =>{
-         const updatedTask =  task.map((curTask) => {
-            if(curTask.content === content){
-                return {...curTask, checked: !curTask.checked};
-            }else{
+    const handleCheckedTodo = (content) => {
+        const updatedTask = task.map((curTask) => {
+            if (curTask.content === content) {
+                return { ...curTask, checked: !curTask.checked };
+            } else {
                 return curTask;
             }
-         })
-         setTask(updatedTask);         
+        })
+        setTask(updatedTask);
     }
 
     const handleClearAll = () => {
@@ -64,12 +75,12 @@ export const Todo = () => {
             <section>
                 <ul className='myUnorderList'>
                     {task.map((curTask) => {
-                        return <TodoList 
-                        key={curTask.id} 
-                        data={curTask.content} 
-                        checked = {curTask.checked}
-                        handleDeleteList={handledeltetodo} 
-                        onHandleCheckedTodo = {handleCheckedTodo}
+                        return <TodoList
+                            key={curTask.id}
+                            data={curTask.content}
+                            checked={curTask.checked}
+                            handleDeleteList={handledeltetodo}
+                            onHandleCheckedTodo={handleCheckedTodo}
                         />
 
                     })}
