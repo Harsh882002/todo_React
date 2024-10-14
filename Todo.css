@@ -95,3 +95,17 @@ body{
     margin-left:47%;
     margin-top: 20px;
 }
+
+.checklist{
+    text-decoration: line-through;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.notCheckList{
+text-decoration: none;
+font-size: 25px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
